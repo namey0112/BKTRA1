@@ -24,7 +24,7 @@
             app:srcCompat="@drawable/back" />
 
         <EditText
-            android:id="@+id/editTextText"
+            android:id="@+id/edtName"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_marginStart="20dp"

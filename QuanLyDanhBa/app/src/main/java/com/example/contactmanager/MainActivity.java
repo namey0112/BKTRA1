@@ -19,7 +19,7 @@ import java.sql.*;
 
 
 public class MainActivity extends AppCompatActivity {
-    ImageButton btnSearch;
+    ImageButton btnSearch, btnAdd;
     SQLiteDatabase myDB;
     ListView lv;
 
@@ -40,6 +40,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // to search activity
                 Intent intent = new Intent(MainActivity.this, searchDv.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        btnAdd = findViewById(R.id.ibtnAdd);
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // to add activity
+                Intent intent = new Intent(MainActivity.this, addDv.class);
                 startActivity(intent);
                 finish();
             }

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".addDv">
+    tools:context=".addStaff">
 
     <ImageButton
         android:id="@+id/ibtnBack"
@@ -29,7 +29,7 @@
             android:id="@+id/imgName"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            app:srcCompat="@drawable/building" />
+            app:srcCompat="@drawable/user" />
 
         <EditText
             android:id="@+id/edtName"
@@ -38,7 +38,7 @@
             android:layout_marginStart="10dp"
             android:layout_weight="1"
             android:ems="10"
-            android:hint="Tên đơn vị"
+            android:hint="Tên nhân viên"
             android:inputType="text" />
     </LinearLayout>
     <LinearLayout
@@ -159,11 +159,10 @@
             android:hint="Số điện thoại"
             android:inputType="text" />
     </LinearLayout>
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
-        android:text="Thêm đơn vị mới" />
+        android:text="Thêm nhân viên mới" />
 </LinearLayout>
