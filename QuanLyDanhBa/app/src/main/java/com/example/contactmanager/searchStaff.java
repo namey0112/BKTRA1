@@ -11,27 +11,26 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class staffManager extends AppCompatActivity {
-    ImageButton btnSearch;
-
+public class searchStaff extends AppCompatActivity {
+    ImageButton btnBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_staff_manager);
+        setContentView(R.layout.activity_search_staff);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        btnSearch = findViewById(R.id.ibtnSearch);
-        btnSearch.setOnClickListener(new View.OnClickListener() {
+        btnBack = findViewById(R.id.ibtnBack);
+        btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(staffManager.this, searchStaff.class);
+                Intent intent = new Intent(searchStaff.this, staffManager.class);
                 startActivity(intent);
                 finish();
             }
-    });
+        });
     }
 }
