@@ -5,53 +5,28 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingStart="10dp"
-    android:paddingEnd="10dp"
     tools:context=".MainActivity">
 
-    <ListView
-        android:id="@+id/lv"
-        android:layout_width="match_parent"
-        android:layout_height="500dp"
+
+    <Button
+        android:id="@+id/btnToDv"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
         android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="250dp"
+        android:layout_marginEnd="110dp"
+        android:text="Xem toàn bộ đơn vị"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/btnToStaff"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="70dp"
-        android:layout_marginBottom="0dp" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="15dp"
-        android:text="Đơn vị"
-        android:textColor="#1D1B20"
-        android:textSize="24sp" />
-
-    <ImageButton
-        android:id="@+id/ibtnAdd"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="77dp"
-        android:background="@android:color/transparent"
-        android:scaleType="fitCenter"
-        app:srcCompat="@drawable/plus_circle" />
-
-    <ImageButton
-        android:id="@+id/ibtnSearch"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="20dp"
-        android:background="@android:color/transparent"
-        android:scaleType="fitCenter"
-        app:srcCompat="@drawable/search" />
-
+        android:layout_marginEnd="110dp"
+        android:layout_marginBottom="250dp"
+        android:text="Xem toàn bộ nhân viên"
+        android:textSize="20sp" />
 </RelativeLayout>

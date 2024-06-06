@@ -15,6 +15,7 @@
         android:layout_marginStart="10dp"
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
+        app:tint="?attr/colorPrimary"
         app:srcCompat="@drawable/back" />
 
     <LinearLayout
@@ -29,6 +30,7 @@
             android:id="@+id/imgName"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            app:tint="?attr/colorPrimary"
             app:srcCompat="@drawable/user" />
 
         <EditText
@@ -53,6 +55,7 @@
             android:id="@+id/imgEmail"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            app:tint="?attr/colorPrimary"
             app:srcCompat="@drawable/email" />
 
         <EditText
@@ -77,7 +80,8 @@
             android:id="@+id/imgWebsite"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            app:srcCompat="@drawable/website" />
+            app:tint="?attr/colorPrimary"
+            app:srcCompat="@drawable/briefcase" />
 
         <EditText
             android:id="@+id/edtWebsite"
@@ -86,7 +90,7 @@
             android:layout_marginStart="10dp"
             android:layout_weight="1"
             android:ems="10"
-            android:hint="Đường dẫn website"
+            android:hint="Chức vụ"
             android:inputType="text" />
     </LinearLayout>
     <LinearLayout
@@ -101,6 +105,7 @@
             android:id="@+id/imgLogo"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            app:tint="?attr/colorPrimary"
             app:srcCompat="@drawable/logo" />
 
         <Button
@@ -108,7 +113,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="Thêm ảnh" />
+            android:text="Thêm ảnh đại diện" />
 
     </LinearLayout>
     <LinearLayout
@@ -123,6 +128,7 @@
             android:id="@+id/imgLocation"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            app:tint="?attr/colorPrimary"
             app:srcCompat="@drawable/location" />
 
         <EditText
@@ -147,6 +153,7 @@
             android:id="@+id/imgPhoneNum"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            app:tint="?attr/colorPrimary"
             app:srcCompat="@drawable/phone" />
 
         <EditText

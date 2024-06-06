@@ -5,7 +5,9 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".staffManager">
+    android:paddingStart="10dp"
+    android:paddingEnd="10dp"
+    tools:context=".dvManager">
 
     <ImageButton
         android:id="@+id/ibtnBack"
@@ -33,10 +35,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="15dp"
         android:layout_toEndOf="@+id/ibtnBack"
-        android:text="Đơn vị ___"
+        android:text="Đơn vị"
         android:textColor="#1D1B20"
         android:textSize="24sp" />
 

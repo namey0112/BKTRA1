@@ -12,7 +12,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class staffManager extends AppCompatActivity {
-    ImageButton btnSearch;
+    ImageButton btnSearch, btnBack, btnAdd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +32,24 @@ public class staffManager extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-    });
+        });
+        btnBack = findViewById(R.id.ibtnBack);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(staffManager.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        btnAdd = findViewById(R.id.ibtnAdd);
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(staffManager.this, addStaff.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 }

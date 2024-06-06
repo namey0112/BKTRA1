@@ -15,6 +15,9 @@
         android:theme="@style/Theme.ContactManager"
         tools:targetApi="31">
         <activity
+            android:name=".dvManager"
+            android:exported="false" />
+        <activity
             android:name=".addStaff"
             android:exported="false" />
         <activity

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
@@ -19,10 +20,8 @@ import java.sql.*;
 
 
 public class MainActivity extends AppCompatActivity {
-    ImageButton btnSearch, btnAdd;
     SQLiteDatabase myDB;
-    ListView lv;
-
+    Button btnDv, btnStaff;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,41 +33,24 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
         TaoBangSQLite();
-        btnSearch = findViewById(R.id.ibtnSearch);
-        btnSearch.setOnClickListener(new View.OnClickListener() {
+        btnDv = findViewById(R.id.btnToDv);
+        btnStaff = findViewById(R.id.btnToStaff);
+        btnDv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // to search activity
-                Intent intent = new Intent(MainActivity.this, searchDv.class);
+                Intent intent = new Intent(MainActivity.this, dvManager.class);
                 startActivity(intent);
                 finish();
             }
         });
-        btnAdd = findViewById(R.id.ibtnAdd);
-        btnAdd.setOnClickListener(new View.OnClickListener() {
+        btnStaff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // to add activity
-                Intent intent = new Intent(MainActivity.this, addDv.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-        lv = findViewById(R.id.lv);
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(MainActivity.this, staffManager.class);
-                intent.putExtra("idDv", id);
                 startActivity(intent);
                 finish();
             }
         });
-        String[] data = {"Item 1", "Item 2", "Item 3", "Item 4", "Item 5"};
-
-// Tạo ArrayAdapter và liên kết với ListView
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, data);
-        lv.setAdapter(adapter);
     }
     public void TaoBangSQLite () {
         myDB = openOrCreateDatabase("contact.db", MODE_PRIVATE, null);

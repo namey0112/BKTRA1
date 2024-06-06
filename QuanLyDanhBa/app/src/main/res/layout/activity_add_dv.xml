@@ -15,7 +15,8 @@
         android:layout_marginStart="10dp"
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
-        app:srcCompat="@drawable/back" />
+        app:srcCompat="@drawable/back"
+        app:tint="?attr/colorPrimary" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,7 +30,8 @@
             android:id="@+id/imgName"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            app:srcCompat="@drawable/building" />
+            app:srcCompat="@drawable/building"
+            app:tint="?attr/colorPrimary" />
 
         <EditText
             android:id="@+id/edtName"
@@ -53,7 +55,8 @@
             android:id="@+id/imgEmail"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            app:srcCompat="@drawable/email" />
+            app:srcCompat="@drawable/email"
+            app:tint="?attr/colorPrimary" />
 
         <EditText
             android:id="@+id/edtEmail"
@@ -77,7 +80,8 @@
             android:id="@+id/imgWebsite"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            app:srcCompat="@drawable/website" />
+            app:srcCompat="@drawable/website"
+            app:tint="?attr/colorPrimary" />
 
         <EditText
             android:id="@+id/edtWebsite"
@@ -101,14 +105,15 @@
             android:id="@+id/imgLogo"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            app:srcCompat="@drawable/logo" />
+            app:srcCompat="@drawable/logo"
+            app:tint="?attr/colorPrimary" />
 
         <Button
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="Thêm ảnh" />
+            android:text="Thêm logo" />
 
     </LinearLayout>
     <LinearLayout
@@ -123,7 +128,8 @@
             android:id="@+id/imgLocation"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            app:srcCompat="@drawable/location" />
+            app:srcCompat="@drawable/location"
+            app:tint="?attr/colorPrimary" />
 
         <EditText
             android:id="@+id/edtLocation"
@@ -147,7 +153,8 @@
             android:id="@+id/imgPhoneNum"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            app:srcCompat="@drawable/phone" />
+            app:srcCompat="@drawable/phone"
+            app:tint="?attr/colorPrimary" />
 
         <EditText
             android:id="@+id/edtPhoneNum"
