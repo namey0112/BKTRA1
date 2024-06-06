@@ -17,6 +17,7 @@
         android:layout_marginTop="5dp"
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
+        app:tint="?attr/colorPrimary"
         app:srcCompat="@drawable/back" />
 
     <ListView
@@ -37,7 +38,7 @@
         android:layout_marginTop="15dp"
         android:layout_toEndOf="@+id/ibtnBack"
         android:text="Đơn vị ___"
-        android:textColor="#1D1B20"
+        android:textColor="?attr/colorPrimary"
         android:textSize="24sp" />
 
     <ImageButton
@@ -50,6 +51,7 @@
         android:layout_marginEnd="77dp"
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
+        app:tint="?attr/colorPrimary"
         app:srcCompat="@drawable/plus_circle" />
 
     <ImageButton
@@ -62,6 +64,7 @@
         android:layout_marginEnd="20dp"
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
+        app:tint="?attr/colorPrimary"
         app:srcCompat="@drawable/search" />
 
 </RelativeLayout>
