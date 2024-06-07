@@ -16,12 +16,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.viewpager2.widget.ViewPager2;
+
+import com.example.contactmanager.adapters.tabAdapter;
+import com.google.android.material.tabs.TabLayout;
+
 import java.sql.*;
 
 
 public class MainActivity extends AppCompatActivity {
     SQLiteDatabase myDB;
-    Button btnDv, btnStaff;
+    TabLayout tabLayout;
+    ViewPager2 viewPager2;
+    tabAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,22 +40,31 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
         TaoBangSQLite();
-        btnDv = findViewById(R.id.btnToDv);
-        btnStaff = findViewById(R.id.btnToStaff);
-        btnDv.setOnClickListener(new View.OnClickListener() {
+        tabLayout = findViewById(R.id.tablayout);
+        viewPager2 = findViewById(R.id.viewPager2);
+        adapter = new tabAdapter(this);
+        viewPager2.setAdapter(adapter);
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, dvManager.class);
-                startActivity(intent);
-                finish();
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager2.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
             }
         });
-        btnStaff.setOnClickListener(new View.OnClickListener() {
+        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, staffManager.class);
-                startActivity(intent);
-                finish();
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                tabLayout.getTabAt(position).select();
             }
         });
     }

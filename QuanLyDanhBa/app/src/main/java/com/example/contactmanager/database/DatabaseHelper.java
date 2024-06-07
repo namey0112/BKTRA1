@@ -5,40 +5,46 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    private static final String DATABASE_NAME = "books.db";
+    private static final String DATABASE_NAME = "contact.db";
     private static final int DATABASE_VERSION = 1;
 
-    public static final String TABLE_BOOKS = "books";
-    public static final String COLUMN_ID = "_id";
-    public static final String COLUMN_TITLE = "title";
-    public static final String COLUMN_AUTHOR = "author";
-    public static final String COLUMN_TAGS = "tags"; // Thêm cột tags
+    public static final String TABLE_NHAN_VIEN = "nhan_vien";
+    public static final String TABLE_DON_VI = "don_vi";
 
-    private static final String TABLE_CREATE =
-            "CREATE TABLE " + TABLE_BOOKS + " (" +
-                    COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    COLUMN_TITLE + " TEXT, " +
-                    COLUMN_AUTHOR + " TEXT, " +
-                    COLUMN_TAGS + " TEXT" + // Thêm cột tags
-                    ");";
-    private static final String TABLE_CREATE_NHAN_VIEN = "CREATE TABLE IF NOT EXISTS nhan_vien (" +
-            "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-            "ho_ten TEXT NOT NULL," +
-            "chuc_vu TEXT NOT NULL," +
-            "email TEXT NOT NULL," +
-            "so_dien_thoai TEXT NOT NULL," +
-            "anh_dai_dien BLOB," +
-            "ma_don_vi INTEGER," + // Khóa ngoại
-            "FOREIGN KEY (ma_don_vi) REFERENCES don_vi(id)" +
+    public static final String COLUMN_ID = "id";
+    public static final String COLUMN_NAME_DON_VI = "ten_don_vi";
+    public static final String COLUMN_EMAIL_DON_VI = "email";
+    public static final String COLUMN_WEBSITE_DON_VI = "website";
+    public static final String COLUMN_LOGO_DON_VI = "logo";
+    public static final String COLUMN_DIA_CHI_DON_VI = "dia_chi";
+    public static final String COLUMN_SO_DIEN_THOAI_DON_VI = "so_dien_thoai";
+    public static final String COLUMN_HO_TEN = "ho_ten";
+    public static final String COLUMN_CHUC_VU = "chuc_vu";
+    public static final String COLUMN_EMAIL = "email";
+    public static final String COLUMN_SO_DIEN_THOAI = "so_dien_thoai";
+    public static final String COLUMN_ANH_DAI_DIEN = "anh_dai_dien";
+    public static final String COLUMN_MA_DON_VI = "ma_don_vi";
+
+    private static final String TABLE_CREATE_NHAN_VIEN =
+            "CREATE TABLE IF NOT EXISTS "+ TABLE_NHAN_VIEN +" (" +
+                    COLUMN_ID + "INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    COLUMN_HO_TEN + "TEXT NOT NULL," +
+                    COLUMN_CHUC_VU + "TEXT NOT NULL," +
+                    COLUMN_EMAIL + "TEXT NOT NULL," +
+                    COLUMN_SO_DIEN_THOAI + "TEXT NOT NULL," +
+                    COLUMN_ANH_DAI_DIEN + "BLOB," +
+                    COLUMN_MA_DON_VI + "ma_don_vi INTEGER," +
+                    "FOREIGN KEY (ma_don_vi) REFERENCES don_vi(id)" +
             ")";
-    private static final String TABLE_CREATE_DON_VI = "CREATE TABLE IF NOT EXISTS don_vi (" +
-            "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-            "ten_don_vi TEXT NOT NULL," +
-            "email TEXT NOT NULL," +
-            "website TEXT," +
-            "logo BLOB," + // Lưu trữ ảnh dạng nhị phân (BLOB)
-            "dia_chi TEXT NOT NULL," +
-            "so_dien_thoai TEXT NOT NULL" +
+    private static final String TABLE_CREATE_DON_VI =
+            "CREATE TABLE IF NOT EXISTS "+ TABLE_DON_VI +" (" +
+                    COLUMN_ID + "INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    COLUMN_NAME_DON_VI + "TEXT NOT NULL," +
+                    COLUMN_EMAIL_DON_VI +"TEXT NOT NULL," +
+                    COLUMN_WEBSITE_DON_VI +"TEXT," +
+                    COLUMN_LOGO_DON_VI +"BLOB," + // Lưu trữ ảnh dạng nhị phân (BLOB)
+                    COLUMN_DIA_CHI_DON_VI +"TEXT NOT NULL," +
+                    COLUMN_SO_DIEN_THOAI_DON_VI +"TEXT NOT NULL" +
             ")";
 
 
@@ -48,12 +54,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(TABLE_CREATE);
+        db.execSQL(TABLE_CREATE_DON_VI);
+        db.execSQL(TABLE_CREATE_NHAN_VIEN);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_BOOKS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NHAN_VIEN);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_DON_VI);
         onCreate(db);
     }
 }
