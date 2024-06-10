@@ -1,6 +1,8 @@
 package com.example.contactmanager.fragments;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,13 +12,22 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ListView;
 
 import com.example.contactmanager.R;
 import com.example.contactmanager.addDv;
 import com.example.contactmanager.addStaff;
+import com.example.contactmanager.database.DatabaseHelper;
+import com.example.contactmanager.detailDvActivity;
+import com.example.contactmanager.model.DonVi;
+import com.example.contactmanager.model.NhanVien;
 import com.example.contactmanager.searchDv;
 import com.example.contactmanager.searchStaff;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,6 +44,11 @@ public class staffManager extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    ListView lv;
+    private DatabaseHelper dbHelper;
+    private ArrayAdapter<String> adapter;
+    private ArrayList<String> staffStrings;
+    private ArrayList<NhanVien> staffList;
     ImageButton btnAdd, btnSearch;
 
     public staffManager() {
@@ -94,5 +110,50 @@ public class staffManager extends Fragment {
                 getActivity().finish();
             }
         });
+        lv = (ListView) getView().findViewById(R.id.lv);
+        lv.setAdapter(adapter);
+        dbHelper = new DatabaseHelper(getActivity());
+        staffList = new ArrayList<>();
+        staffStrings = new ArrayList<>();
+        loadDv();
+
+        adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, staffStrings);
+        lv.setAdapter(adapter);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                NhanVien selectedNhanVien = staffList.get(position);
+                Intent intent = new Intent(getActivity(), detailDvActivity.class);
+                intent.putExtra("staffId", selectedNhanVien.getId()); // Pass ID instead of name
+                startActivity(intent);
+                getActivity().finish();
+
+            }
+        });
     }
+
+    private void loadDv() {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.query(DatabaseHelper.TABLE_DON_VI, null, null, null, null, null, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                int id = cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_ID));
+                String hoten = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_HO_TEN));
+                String email = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_EMAIL_DON_VI));
+                String chucVu = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_CHUC_VU));
+                byte[] logoBytes = cursor.getBlob(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_ANH_DAI_DIEN));
+                String dienThoai = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_SO_DIEN_THOAI_DON_VI));
+//                    Bitmap logo = (logoBytes != null) ? BitmapFactory.decodeByteArray(logoBytes, 0, logoBytes.length) : null;
+
+                NhanVien nhanVien = new NhanVien(id, hoten, chucVu, dienThoai, email, logoBytes);
+                staffList.add(nhanVien); // Add entire DonVi object
+                staffStrings.add(hoten); // Add name only
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+    }
+
 }

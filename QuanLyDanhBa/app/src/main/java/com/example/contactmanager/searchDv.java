@@ -18,8 +18,6 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.contactmanager.adapters.dvRecyclerAdapter;
 import com.example.contactmanager.model.DonVi;
 
 import java.util.ArrayList;

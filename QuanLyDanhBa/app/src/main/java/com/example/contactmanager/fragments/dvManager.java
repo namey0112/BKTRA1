@@ -113,8 +113,6 @@ public class dvManager extends Fragment {
             }
         });
         lv = (ListView) getView().findViewById(R.id.lv);
-        String[] data = {"Item 1", "Item 2", "Item 3", "Item 4", "Item 5"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, data);
         lv.setAdapter(adapter);
         dbHelper = new DatabaseHelper(getActivity());
         dvList = new ArrayList<>();

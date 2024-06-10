@@ -1,11 +1,14 @@
 package com.example.contactmanager;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +24,7 @@ import com.example.contactmanager.database.DatabaseHelper;
 public class detailDvActivity extends AppCompatActivity {
     ImageView imgLogo;
     TextView tvName, tvPhone, tvEmail, tvWebsite, tvAddress;
+    ImageButton btnBack, btnEdit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +36,16 @@ public class detailDvActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        btnBack = findViewById(R.id.ibtnBack);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(detailDvActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        btnEdit = findViewById(R.id.ibtnEdit);
         imgLogo = findViewById(R.id.imgAvt);
         tvName = findViewById(R.id.txtName);
         tvPhone = findViewById(R.id.txtPhone);

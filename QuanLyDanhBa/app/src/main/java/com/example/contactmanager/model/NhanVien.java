@@ -8,17 +8,16 @@ public class NhanVien {
     String chucVu;
     String dienThoai;
     String email;
-    Bitmap anhDaiDien;
+    byte[] anhDaiDien;
     int maDonVi;
 
-    public NhanVien(int id, String hoTen, String chucVu, String dienThoai, String email, Bitmap anhDaiDien, int maDonVi) {
+    public NhanVien(int id, String hoTen, String chucVu, String dienThoai, String email, byte[] anhDaiDien) {
         this.id = id;
         this.hoTen = hoTen;
         this.chucVu = chucVu;
         this.dienThoai = dienThoai;
         this.email = email;
         this.anhDaiDien = anhDaiDien;
-        this.maDonVi = maDonVi;
     }
 
     public int getId() {
@@ -61,11 +60,11 @@ public class NhanVien {
         this.email = email;
     }
 
-    public Bitmap getAnhDaiDien() {
+    public byte[] getAnhDaiDien() {
         return anhDaiDien;
     }
 
-    public void setAnhDaiDien(Bitmap anhDaiDien) {
+    public void setAnhDaiDien(byte[] anhDaiDien) {
         this.anhDaiDien = anhDaiDien;
     }
 
