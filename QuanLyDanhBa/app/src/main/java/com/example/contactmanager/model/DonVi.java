@@ -11,6 +11,16 @@ public class DonVi {
     String diaChi;
     String dienThoai;
 
+    public DonVi(int id, String tenDv, String email, String website, Bitmap logo, String diaChi, String dienThoai) {
+        this.id = id;
+        this.tenDv = tenDv;
+        this.email = email;
+        this.website = website;
+        this.logo = logo;
+        this.diaChi = diaChi;
+        this.dienThoai = dienThoai;
+    }
+
     public int getId() {
         return id;
     }

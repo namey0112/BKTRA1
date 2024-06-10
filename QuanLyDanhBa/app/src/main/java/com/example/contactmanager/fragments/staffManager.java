@@ -1,14 +1,22 @@
 package com.example.contactmanager.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import com.example.contactmanager.R;
+import com.example.contactmanager.addDv;
+import com.example.contactmanager.addStaff;
+import com.example.contactmanager.searchDv;
+import com.example.contactmanager.searchStaff;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +33,7 @@ public class staffManager extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    ImageButton btnAdd, btnSearch;
 
     public staffManager() {
         // Required empty public constructor
@@ -62,5 +71,28 @@ public class staffManager extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_staff_manager, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        btnAdd = (ImageButton) getView().findViewById(R.id.ibtnAdd);
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), addStaff.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
+        btnSearch = (ImageButton) getView().findViewById(R.id.ibtnSearch);
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), searchStaff.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
     }
 }

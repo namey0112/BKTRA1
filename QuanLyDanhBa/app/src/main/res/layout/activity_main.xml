@@ -7,6 +7,18 @@
     android:layout_height="match_parent"
     android:padding="10dp"
     tools:context=".MainActivity">
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:gravity="center"
+        android:text="Danh bạ"
+        android:textAlignment="center"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="34sp"
+        android:textStyle="bold" />
 
 
     <androidx.viewpager2.widget.ViewPager2

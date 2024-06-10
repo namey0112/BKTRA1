@@ -1,5 +1,6 @@
     package com.example.contactmanager.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,11 +12,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.example.contactmanager.R;
+import com.example.contactmanager.addDv;
+import com.example.contactmanager.searchDv;
 
-/**
+    /**
  * A simple {@link Fragment} subclass.
  * Use the {@link dvManager#newInstance} factory method to
  * create an instance of this fragment.
@@ -31,6 +36,7 @@ public class dvManager extends Fragment {
     private String mParam1;
     private String mParam2;
     ListView lv;
+    ImageButton btnAdd, btnSearch;
     public dvManager() {
         // Required empty public constructor
     }
@@ -73,6 +79,25 @@ public class dvManager extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        btnAdd = (ImageButton) getView().findViewById(R.id.ibtnAdd);
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), addDv.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
+        btnSearch = (ImageButton) getView().findViewById(R.id.ibtnSearch);
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), searchDv.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
         lv = (ListView) getView().findViewById(R.id.lv);
         String[] data = {"Item 1", "Item 2", "Item 3", "Item 4", "Item 5"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, data);

@@ -11,6 +11,16 @@ public class NhanVien {
     Bitmap anhDaiDien;
     int maDonVi;
 
+    public NhanVien(int id, String hoTen, String chucVu, String dienThoai, String email, Bitmap anhDaiDien, int maDonVi) {
+        this.id = id;
+        this.hoTen = hoTen;
+        this.chucVu = chucVu;
+        this.dienThoai = dienThoai;
+        this.email = email;
+        this.anhDaiDien = anhDaiDien;
+        this.maDonVi = maDonVi;
+    }
+
     public int getId() {
         return id;
     }

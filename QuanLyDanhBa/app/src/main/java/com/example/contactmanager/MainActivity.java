@@ -25,6 +25,7 @@ import java.sql.*;
 
 
 public class MainActivity extends AppCompatActivity {
+    Button btnAdd, btnSearch;
     SQLiteDatabase myDB;
     TabLayout tabLayout;
     ViewPager2 viewPager2;

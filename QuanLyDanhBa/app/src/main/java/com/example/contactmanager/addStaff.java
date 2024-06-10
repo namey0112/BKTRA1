@@ -11,6 +11,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.contactmanager.fragments.staffManager;
+
 public class addStaff extends AppCompatActivity {
     ImageButton btnBack;
 
@@ -28,7 +30,7 @@ public class addStaff extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(addStaff.this, staffManager.class);
+                Intent intent = new Intent(addStaff.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }

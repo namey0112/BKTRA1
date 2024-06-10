@@ -2,7 +2,9 @@ package com.example.contactmanager.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "contact.db";
@@ -63,5 +65,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NHAN_VIEN);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_DON_VI);
         onCreate(db);
+    }
+
+    @Override
+    public synchronized SQLiteDatabase getWritableDatabase() {
+        SQLiteDatabase db = null;
+        try {
+            db = super.getWritableDatabase();
+        } catch (SQLiteException e) {
+            // Xử lý ngoại lệ nếu không thể mở cơ sở dữ liệu để ghi
+            // Ví dụ:
+            Log.e("DatabaseHelper", "Lỗi khi mở cơ sở dữ liệu để ghi", e);
+            // Hoặc bạn có thể thông báo cho người dùng, thử lại, ...
+        }
+        return db;
     }
 }
