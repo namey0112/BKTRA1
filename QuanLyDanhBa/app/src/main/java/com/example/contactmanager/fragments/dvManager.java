@@ -1,6 +1,10 @@
     package com.example.contactmanager.fragments;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,7 +22,13 @@ import android.widget.ListView;
 
 import com.example.contactmanager.R;
 import com.example.contactmanager.addDv;
+import com.example.contactmanager.database.DatabaseHelper;
+import com.example.contactmanager.detailDvActivity;
+import com.example.contactmanager.model.DonVi;
 import com.example.contactmanager.searchDv;
+
+import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 
     /**
  * A simple {@link Fragment} subclass.
@@ -36,6 +46,10 @@ public class dvManager extends Fragment {
     private String mParam1;
     private String mParam2;
     ListView lv;
+    private DatabaseHelper dbHelper;
+    private ArrayAdapter<String> adapter;
+    private ArrayList<String> dvStrings;
+    private ArrayList<DonVi> dvList;
     ImageButton btnAdd, btnSearch;
     public dvManager() {
         // Required empty public constructor
@@ -102,5 +116,62 @@ public class dvManager extends Fragment {
         String[] data = {"Item 1", "Item 2", "Item 3", "Item 4", "Item 5"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, data);
         lv.setAdapter(adapter);
+        dbHelper = new DatabaseHelper(getActivity());
+        dvList = new ArrayList<>();
+        dvStrings = new ArrayList<>();
+        loadDv();
+
+        adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, dvStrings);
+        lv.setAdapter(adapter);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                DonVi selectedDonVi = dvList.get(position);
+                Intent intent = new Intent(getActivity(), detailDvActivity.class);
+                intent.putExtra("donViId", selectedDonVi.getId()); // Pass ID instead of name
+                startActivity(intent);
+                getActivity().finish();
+
+            }
+        });
     }
+//        private void loadDv() {
+//            SQLiteDatabase db = dbHelper.getReadableDatabase();
+//            Cursor cursor = db.query(DatabaseHelper.TABLE_DON_VI, null, null, null, null, null, null);
+//
+//            if (cursor.moveToFirst()) {
+//                do {
+//                    String name = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_NAME_DON_VI));
+//                    dvList.add(name);
+//                } while (cursor.moveToNext());
+//            }
+//
+//            cursor.close();
+//            db.close();
+//        }
+        private void loadDv() {
+            SQLiteDatabase db = dbHelper.getReadableDatabase();
+            Cursor cursor = db.query(DatabaseHelper.TABLE_DON_VI, null, null, null, null, null, null);
+
+            if (cursor.moveToFirst()) {
+                do {
+                    int id = cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_ID));
+                    String name = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_NAME_DON_VI));
+                    String email = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_EMAIL_DON_VI));
+                    String website = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_WEBSITE_DON_VI));
+                    byte[] logoBytes = cursor.getBlob(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_LOGO_DON_VI));
+                    String diaChi = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_DIA_CHI_DON_VI));
+                    String dienThoai = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_SO_DIEN_THOAI_DON_VI));
+//                    Bitmap logo = (logoBytes != null) ? BitmapFactory.decodeByteArray(logoBytes, 0, logoBytes.length) : null;
+
+                    DonVi donVi = new DonVi(id, name, email, website, logoBytes, diaChi, dienThoai);
+                    dvList.add(donVi); // Add entire DonVi object
+                    dvStrings.add(name); // Add name only
+                } while (cursor.moveToNext());
+            }
+
+            cursor.close();
+            db.close();
+        }
+
 }
